@@ -4,7 +4,7 @@ import { axiosInstance } from "../api/axios.config.js";
 export const getProductList = async () => {
   try {
     const { data } = await axiosInstance.get(`/products`);
-    return data;
+    return {data: {products: data}};
   } catch (error) {
     console.error("Error fetching product list:", error);
     throw error;
@@ -14,7 +14,7 @@ export const getProductList = async () => {
 export const getProduct = async (id) => {
   try {
     const { data } = await axiosInstance.get(`/products/${id}`);
-    return data;
+    return {data: {product: data}};
   } catch (error) {
     console.error("Error fetching product :", error);
     throw error;
@@ -24,7 +24,7 @@ export const getProduct = async (id) => {
 export const getCategoryProduct = async (id) => {
   try {
     const { data } = await axiosInstance.get(`/categories/${id}/products`);
-    return data;
+    return { data: {products: data}};
   } catch (error) {
     console.error("Error fetching product of the category :", error);
     throw error;

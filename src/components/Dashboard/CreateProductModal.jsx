@@ -91,7 +91,7 @@ const CreateProductModal = ({
                   {categoriesData?.data.categories.map((category) => (
                     <Radio
                       key={category.id}
-                      value={category.id}
+                      value={category.title}
                       {...register("category")}
                     >
                       {category.title}

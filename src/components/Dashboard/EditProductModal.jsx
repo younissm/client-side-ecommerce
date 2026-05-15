@@ -47,7 +47,7 @@ const EditProductModal = ({
       price: product?.price || 0,
       stock: product?.stock || 0,
       discount: product?.discountPercentage || 0,
-      // thumbnail: null,
+      thumbnail: null,
     },
   });
 
@@ -57,14 +57,13 @@ const EditProductModal = ({
       setValue("description", product.description);
       setValue("price", product.price);
       setValue("stock", product.stock);
-      setValue("discount", product.discountPercentage);
-      // setValue("thumbnail", product.thumbnail);
+      setValue("discount", product.discountPercentage || 0);
+      setValue("thumbnail", null);
     }
   }, [product, setValue]);
 
   const onSubmit = (data) => {
     const formData = new FormData();
-    console.log(data);
 
     formData.append("title", data.title);
     formData.append("description", data.description);
@@ -90,7 +89,6 @@ const EditProductModal = ({
       onSubmit={handleSubmit(onSubmit)}
       errorsExist={Object.keys(errors).length > 0}
     >
-      {/* Form Controls */}
       <FormControl isInvalid={errors.title}>
         <FormLabel>Product title</FormLabel>
         <Input {...register("title")} />
@@ -120,7 +118,7 @@ const EditProductModal = ({
                   {categoriesData?.data.categories.map((category) => (
                     <Radio
                       key={category.id}
-                      value={category.id}
+                      value={category.title}
                       {...register("category")}
                     >
                       {category.title}

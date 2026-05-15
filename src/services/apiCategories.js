@@ -4,7 +4,7 @@ import { axiosInstance } from "../api/axios.config.js";
 export const getCategoriesList = async () => {
   try {
     const { data } = await axiosInstance.get(`/categories`);
-    return data;
+    return {data: {categories: data}};
   } catch (error) {
     console.error("Error fetching categories:", error);
     throw error;

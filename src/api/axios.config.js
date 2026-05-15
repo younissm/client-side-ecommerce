@@ -1,4 +1,4 @@
 import axios from "axios";
 export const axiosInstance = axios.create({
-  baseURL: "https://server-side-eureka.vercel.app/api/v1",
+  baseURL: import.meta.env.VITE_API_URL+"/api",
 });

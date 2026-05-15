@@ -62,6 +62,7 @@ const ResetPassword = () => {
     // const formData = new FormData();
     // formData.append("email", data.email);
     const body = {
+      email: new URLSearchParams(location.search).get('email'),
       password: data.password,
       passwordConfirm: data.passwordConfirm,
     };

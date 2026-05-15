@@ -20,7 +20,6 @@ const PersonalDetails = () => {
   const cart = useSelector((state) => state.cart);
 
   function onSubmit(data) {
-    console.log(data);
     const body = {
       products: cart.cart,
 

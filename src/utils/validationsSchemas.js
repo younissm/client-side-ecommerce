@@ -17,7 +17,7 @@ export const EditProductSchema = yup.object().shape({
   discount: yup.number().max(100).required("Discount is required"),
   stock: yup.number().required("Stock is required"),
   category: yup.string().required("Category is required"),
-  thumbnail: yup.mixed(),
+  thumbnail: yup.mixed().nullable(),
 });
 
 export const LoginSchema = yup.object().shape({

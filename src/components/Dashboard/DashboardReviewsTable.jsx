@@ -67,7 +67,7 @@ const DashboardReviewsTable = () => {
                   <Td textAlign="center !important">
                     <Button
                       as={Link}
-                      to={`/products/${review?.product?.id}`}
+                      to={`/products/${review?.product}`}
                       colorScheme="purple"
                       variant="solid"
                       mr={3}

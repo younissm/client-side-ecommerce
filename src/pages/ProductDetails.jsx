@@ -44,7 +44,7 @@ function ProductDetailsPage() {
 
   const { isLoading, data } = useQuery(["product", id], () => getProduct(id));
 
-  const category = data?.data.product.category.title;
+  const category = data?.data.product.category;
   const { data: categoryData } = useQuery(["products", category], () =>
     getCategoryProduct(category)
   );
@@ -202,7 +202,7 @@ function ProductDetailsPage() {
                 <Flex alignItems="center">
                   <BsStarFill color="gold" />
                   <Text fontSize="2xl" fontWeight="bold" mx={2}>
-                    {data.data.product.ratingsAverage.toFixed(1)}
+                    {data.data.product.ratingsAverage?.toFixed(1)}
                   </Text>
                   <Text fontSize="lg" color="gray.500" ml={2}>
                     / 5
@@ -315,7 +315,7 @@ function ProductDetailsPage() {
         >
           {categoryData?.data.products
             .slice(0, 5)
-            .filter((el) => el._id !== id)
+            .filter((el) => el.id !== id)
             .map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}

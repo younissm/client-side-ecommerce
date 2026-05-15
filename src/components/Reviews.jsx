@@ -159,7 +159,7 @@ const Reviews = ({ productId }) => {
 
   // Check if the user has already made a review for this product
   const hasReviewed = reviewsData?.data?.reviews.some(
-    (review) => review?.user?._id === userData?.data?.user?._id
+    (review) => review?.user?.id === userData?.data?.user?.id
   );
 
   return (
@@ -268,7 +268,7 @@ const Reviews = ({ productId }) => {
                 </Text>
                 <Text fontSize="18px">{review?.review}</Text>
               </Box>
-              {myUserData?.data.user?._id === review.user?._id && (
+              {myUserData?.data.user?.id === review.user?.id && (
                 <Flex gap="15px">
                   <Box
                     cursor="pointer"

@@ -81,7 +81,6 @@ const DashboardUsersTable = () => {
   );
 
   function onUpdateSubmit(data) {
-    console.log(data.image, data.image[0]);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
@@ -112,7 +111,7 @@ const DashboardUsersTable = () => {
           <Tbody>
             {usersData?.data.users.map((user, index) => {
               return (
-                <Tr key={user._id}>
+                <Tr key={user.id}>
                   <Td>{index + 1}</Td>
                   <Td>
                     <Image
@@ -141,7 +140,7 @@ const DashboardUsersTable = () => {
                       _hover={{ backgroundColor: "purple.800" }}
                       ml={2}
                       onClick={() => {
-                        setClickedUserId(user?._id);
+                        setClickedUserId(user?.id);
                         setClickedUserData(user);
                         onUpdateModalOpen();
                       }}
@@ -151,7 +150,7 @@ const DashboardUsersTable = () => {
                       color="white"
                       _hover={{ backgroundColor: "red.800" }}
                       onClick={() => {
-                        setClickedUserId(user?._id);
+                        setClickedUserId(user?.id);
                         onOpen();
                       }}
                       icon={<BiTrash size={17} />}
@@ -199,7 +198,6 @@ const DashboardUsersTable = () => {
             defaultValue={clickedUserData?.role}
           >
             <option value="user">user</option>
-            <option value="moderator">moderator</option>
             <option value="admin">admin</option>
           </Select>
         </FormControl>

@@ -3,8 +3,13 @@ import { axiosInstance } from "../api/axios.config.js";
 
 export const getUsersList = async () => {
   try {
-    const { data } = await axiosInstance.get(`/users`);
-    return data;
+    const { data } = await axiosInstance.get(`/users`, {
+        headers: {
+          Authorization: `Bearer ${CookieServices.get("jwt")}`,
+        },
+      }
+    );
+    return { data: {users: data}};
   } catch (error) {
     console.error("Error fetching users list:", error);
     throw error;
@@ -18,7 +23,7 @@ export const getMyUser = async () => {
         Authorization: `Bearer ${CookieServices.get("jwt")}`,
       },
     });
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error fetching user:", error);
     throw error;
@@ -32,7 +37,7 @@ export const updateMe = async (formData) => {
         Authorization: `Bearer ${CookieServices.get("jwt")}`,
       },
     });
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error updating user:", error);
     throw error;
@@ -46,7 +51,8 @@ export const updateUser = async ({ id, formData }) => {
         Authorization: `Bearer ${CookieServices.get("jwt")}`,
       },
     });
-    return data;
+
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error updating user:", error);
     throw error;
@@ -64,7 +70,7 @@ export const updateMyPassword = async (body) => {
         },
       }
     );
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error updating user password:", error);
     throw error;
@@ -78,7 +84,7 @@ export const deleteUser = async (id) => {
         Authorization: `Bearer ${CookieServices.get("jwt")}`,
       },
     });
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error deleting user:", error);
     throw error;
@@ -88,7 +94,7 @@ export const deleteUser = async (id) => {
 export const forgotPassword = async (body) => {
   try {
     const { data } = await axiosInstance.post(`/users/forgotPassword`, body);
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error sending email:", error);
     throw error;
@@ -100,7 +106,7 @@ export const resetPassword = async ({ body, token }) => {
       `/users/resetPassword/${token}`,
       body
     );
-    return data;
+    return { data: {user: data}};
   } catch (error) {
     console.error("Error reseting password:", error);
     throw error;
